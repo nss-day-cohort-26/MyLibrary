@@ -122,9 +122,13 @@ namespace MyLibrary.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LibraryId"] = new SelectList(_context.Library, "LibraryId", "LibraryId", book.LibraryId);
-            return View(book);
-        }
+            //ViewData["LibraryId"] = new SelectList(_context.Library, "LibraryId", "LibraryId", book.LibraryId);
+            //return View(book);
+
+			BookEditViewModel bookEditViewModel = new BookEditViewModel(_context);
+			bookEditViewModel.Book = book;
+			return View(bookEditViewModel);
+		}
 
         // GET: Books/Delete/5
         public async Task<IActionResult> Delete(int? id)
